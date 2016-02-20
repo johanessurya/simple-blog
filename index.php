@@ -1,3 +1,10 @@
+<?php
+require 'class/model.class.php';
+require 'class/config.class.php';
+
+$model = new Model();
+$rows = $model->select('SELECT * FROM `articles`');
+?>
 <!DOCTYPE HTML>
 <!--
 	Hyperspace by HTML5 UP
@@ -46,18 +53,20 @@
 
 				<!-- One -->
 					<section id="one" class="wrapper style2 spotlights">
+						<?php foreach($rows as $x): ?>
 						<section>
 							<a href="#" class="image"><img src="images/pic01.jpg" alt="" data-position="center center" /></a>
 							<div class="content">
 								<div class="inner">
-									<h2>Sed ipsum dolor</h2>
-									<p>Phasellus convallis elit id ullamcorper pulvinar. Duis aliquam turpis mauris, eu ultricies erat malesuada quis. Aliquam dapibus.</p>
+									<h2><?php echo $x['title']; ?></h2>
+									<p><?php echo $x['description']; ?></p>
 									<ul class="actions">
 										<li><a href="#" class="button">Learn more</a></li>
 									</ul>
 								</div>
 							</div>
 						</section>
+						<?php endforeach; ?>
 						<section>
 							<a href="#" class="image"><img src="images/pic02.jpg" alt="" data-position="top center" /></a>
 							<div class="content">
